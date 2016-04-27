@@ -1,0 +1,12 @@
+<h1>Ingredients!</h1>
+
+<h4><%= link_to "Add New Ingredient", new_ingredient_path %></h4>
+
+<ul class="list-group">
+<% @ingredients.each do |ingredient| %>
+  <li class="list-group-item">
+  <%= link_to ingredient.name, ingredient_path(ingredient) %> 
+  - <%= link_to "edit", edit_ingredient_path(ingredient), class:"glyphicon glyphicon-pencil" %>
+  </li>
+<% end %>
+</ul>

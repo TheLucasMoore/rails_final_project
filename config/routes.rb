@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'static/index'
+  get '/about' => 'static#about'
 
   resources :comments
   resources :ratings
