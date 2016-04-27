@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    #@comment = @recipe.comments
   end
 
   def new
@@ -43,6 +44,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:user_id, :name, :description, :ingredients, :ingredient_attributes => [:id, :name])
+    params.require(:recipe).permit(:user_id, :name, :description, :ingredients, :ingredient_attributes => [:name])
   end
 end

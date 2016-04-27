@@ -7,16 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first
 #   
 
-  10.times do
+  10.times do 
 
     User.create(
       email: Faker::Internet.email,
-      password: Faker::Internet.password
+      password: "testtest"
       )
 
     Recipe.create(
       name: Faker::Name.first_name + "'s " + Faker::Lorem.word,
-      description: Faker::Lorem.sentence,
+      description: "Recipe Description",
       user_id: Faker::Number.between(1, 10)
       )
 
@@ -25,8 +25,8 @@
       )
 
     Comment.create(
-      user_id: Faker::Number.between(1, 10),
-      recipe_id: Faker::Number.between(1, 10), 
+      user_id: Faker::Number.between(1, 5),
+      recipe_id: Faker::Number.between(1, 5), 
       content: Faker::Lorem.sentence
       )
 
@@ -37,9 +37,9 @@
       )
 
     RecipeIngredient.create(
-      recipe_id: Faker::Number.between(1, 10),
-      ingredient_id: Faker::Number.between(1, 10),
-      quantity: Faker::Number.between(1, 10)
+      recipe_id: Faker::Number.between(1, 5),
+      ingredient_id: Faker::Number.between(1, 5),
+      quantity: Faker::Number.between(1, 5)
       )
 
   end
