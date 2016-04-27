@@ -4,7 +4,8 @@
   <% @recipes.each do |recipe| %>
   <li class="list-group-item">
     <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-    <h4>by <%= recipe.user.email %></h4>
+    <h4>by <%= recipe.user %></h4>
+    <%= link_to "Delete", recipe_path(recipe), method: :delete %>
   </li>
 <% end %>
 </ul>
