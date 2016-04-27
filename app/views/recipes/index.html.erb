@@ -1,0 +1,10 @@
+<h1>All Recipes</h1>
+
+<ul class="list-group">
+  <% @recipes.each do |recipe| %>
+  <li class="list-group-item">
+    <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+    <h4>by <%= recipe.user.email %></h4>
+  </li>
+<% end %>
+</ul>

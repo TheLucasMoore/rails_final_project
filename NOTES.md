@@ -10,7 +10,7 @@ CRUDs
   Comments
   Rating
 
-USERS
+USERS - add names into Devise
   Roles? 
   Admin, Moderator, User
   Admin can do everything
