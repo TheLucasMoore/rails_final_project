@@ -9,3 +9,17 @@
   <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
 <% end %>
 </ul>
+
+<h4>Comments</h4>
+<% @recipe.comments.each do |comment| %>
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+    <%= comment.user.email %> says:
+    </h4></div>
+  <%= comment.content %>
+  </div>
+
+<% end %>
+
+
