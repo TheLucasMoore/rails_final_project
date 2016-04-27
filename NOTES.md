@@ -7,6 +7,7 @@ CRUDs
   Recipe
   Ingredients
   Comments
+  Rating
 
 USERS
   Roles? 
