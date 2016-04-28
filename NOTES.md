@@ -1,21 +1,11 @@
 ## Tasks To Do: 
 
-1. Write Tests
-2. Find A Theme. Bootstrap.
-3. Functioning form on home page
+- Write Tests
+    - Model Validations and Tests
 
-4. Model Validations and Tests
-X 5. Do more research on NESTED ROUTES AND FORMS 
-6. Authentication with Pundit
+- Functioning form on home page
 
-7. Finalize all Crud actions
-8. Ratings and Comments
-
-## CRUDs
-  Recipe X
-  Ingredients X
-  Comments ?
-  Rating ?
+- Authentication with Pundit
 
 USERS - add names into Devise
   Roles? 
@@ -23,7 +13,3 @@ USERS - add names into Devise
   Admin can do everything
   Moderator can edit comments, ingredients
   User can CRUD own recpies, ratings and comments
-
-VALIDATIONS
-  ingredients must be unique, input should be sanitized in model
-  recipes must be unique
