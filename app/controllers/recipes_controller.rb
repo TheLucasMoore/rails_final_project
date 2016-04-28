@@ -14,7 +14,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
     @recipe = Recipe.create(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe)
@@ -44,6 +43,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:user_id, :name, :description, :ingredients, :ingredient_attributes => [:name])
+    params.require(:recipe).permit(:user_id, :name, :description, :ingredient_ids => [], :ingredient_attributes => [:name])
   end
 end

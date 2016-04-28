@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :ingredients
   resources :recipes do
-    resources :comments, only: [:new, :create, :show]
+    resources :comments
     resources :ratings, only: [:new, :create, :show]
   end
   # The priority is based upon order of creation: first created -> highest priority.

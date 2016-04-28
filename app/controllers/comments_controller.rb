@@ -1,19 +1,17 @@
 class CommentsController < ApplicationController
 
   def new
-    if params[:recipe_id]
-      raise params.inspect
-    else
     @comment = Comment.new
-  end
   end
 
   def create
-    raise params.inspect
-    @comment = Comment.create(comment_params)
 
-    if @recipe = params[:recipe_id]
+    @comment = Comment.new(comment_params)
+
+    if @comment.save
       redirect_to recipe_path(@recipe)
+    else
+      raise params.inspect
     end
   end
 
@@ -22,7 +20,8 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.all
+    @recipe = Recipe.find(params[:recipe_id])
+    @comments = @recipe.comments
   end
 
   def edit
