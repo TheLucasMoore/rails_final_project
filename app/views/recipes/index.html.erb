@@ -6,7 +6,7 @@
   <% @recipes.each do |recipe| %>
   <li class="list-group-item">
     <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-    <h4>by <%= recipe.user %></h4>
+    <h4>by <%= recipe.user.name %></h4>
     <h4><%= comment_count(recipe) %>
     <%= link_to "Delete", recipe_path(recipe), method: :delete %>
   </li>

@@ -3,7 +3,7 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-    <%= comment.user %> says:
+    <%= comment.user.name %> says:
     </h4></div>
   <%= comment.content %>
   <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), method: :delete %>

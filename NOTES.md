@@ -4,6 +4,7 @@
     - Model Validations and Tests
 
 - Functioning form on home page
+- Alert X for flashes
 
 - Authentication with Pundit
 
