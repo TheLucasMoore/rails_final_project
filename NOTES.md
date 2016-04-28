@@ -16,8 +16,6 @@
 
 - Recipe/Ingredients Quantity Relationship? In forms.
 
-- Write README
-
   Roles? 
   Admin, Moderator, User
   Admin can do everything
