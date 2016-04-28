@@ -6,7 +6,6 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    #@comment = @recipe.comments
   end
 
   def new
@@ -15,6 +14,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create(recipe_params)
+    @recipe.ingredients = params[:recipe][:ingredients]
+    
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -43,6 +44,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:user_id, :name, :description, :ingredient_ids => [], :ingredient_attributes => [:name])
+    params.require(:recipe).permit(:user_id, :name, :description, :ingredients, :ingredients_attributes => [:name])
   end
 end
