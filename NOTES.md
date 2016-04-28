@@ -7,6 +7,8 @@
 
 - Authentication with Pundit
 
+- Recipe/Ingredients Quantity?
+
 USERS - add names into Devise
   Roles? 
   Admin, Moderator, User
