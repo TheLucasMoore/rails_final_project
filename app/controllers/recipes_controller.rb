@@ -14,13 +14,15 @@ class RecipesController < ApplicationController
   end
 
   def create
+    #raise params.inspect
     @recipe = Recipe.create(recipe_params)
     @recipe.ingredients = params[:recipe][:ingredients]
     
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      render 'new'
+      flash[:alert] = "There were issues saving your recipe."
+      render :new
     end
   end
 
@@ -45,6 +47,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:user_id, :name, :description, :ingredients, :ingredients_attributes => [:name])
+    params.require(:recipe).permit(:user_id, :name, :rating, :description, :ingredients, :ingredients_attributes => [:name])
   end
 end

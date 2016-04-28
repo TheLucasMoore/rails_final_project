@@ -1,0 +1,8 @@
+<%= form_tag(recipe_ratings_path) %>
+
+  <%= label_tag :rating %>
+  <%= number_field_tag :rating, nil, min: 1, max: 5 %><br>
+  <%= hidden_field_tag :user_id, current_user.id %>
+  <%= hidden_field_tag :recipe_id %>
+
+<%= submit_tag "Rate" %>

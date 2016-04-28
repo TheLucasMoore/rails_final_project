@@ -1,10 +1,13 @@
-<%= form_for @recipe do |f| %>
+<%= form_for(@recipe) do |f| %>
   
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
 
   <%= f.label :description %><br>
   <%= f.text_area :description %><br>
+
+  <%= f.label "Rating out of 5" %><br>
+  <%= f.number_field :rating, min: 1, max: 5 %><br><br>
 
   <%= f.label "Select Existing Ingredients" %>
   <%= f.collection_check_boxes :ingredients, Ingredient.all, :id, :name %><br>
