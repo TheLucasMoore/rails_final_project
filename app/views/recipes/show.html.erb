@@ -1,26 +1,5 @@
-<h1><%= @recipe.name %></h1>
-<h4>by <%= @recipe.user.email %></h4>
-
-<p><%= @recipe.description %></p>
-
-<h4>Recipe Ingredients</h4>
-<ul>
-<% @recipe.ingredients.each do |ingredient| %>
-  <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
-<% end %>
-</ul>
-
-<h4>Comments</h4>
-<% @recipe.comments.each do |comment| %>
-<div class="media">
-  <div class="media-body">
-    <h4 class="media-heading">
-    <%= comment.user.email %> says:
-    </h4></div>
-  <%= comment.content %>
-  </div>
-
-<% end %>
+<%= render 'recipe' %>
 
 <br><br>
-<%= button_to "Add your own comment here", new_recipe_comment_path(@recipe, @comment) %>
+
+<%= link_to "Want to see comments or add your own?", recipe_comments_path(@recipe.id, @comment) %>

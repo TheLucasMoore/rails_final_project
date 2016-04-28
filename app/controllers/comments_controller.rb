@@ -2,21 +2,18 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    @recipe = Recipe.find(params[:id])
   end
 
   def create
-
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_comments_path
     else
-      raise params.inspect
+      flash[:notice] = "Try that again! Comments cannot be blank."
+      render :new
     end
-  end
-
-  def show
-    @comment = Comment.find(params[:id])
   end
 
   def index
@@ -28,11 +25,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    redirect_to recipe_comments_path
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :user_id, :recipe_id)
+    params.permit(:content, :user_id, :recipe_id)
   end
 end

@@ -6,6 +6,9 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   has_one :rating
 
+  validates :name, presence: true
+  validates :description, presence: true
+
   #accepts_nested_attributes_for :ingredients
 
   def ingredients_attributes=(ingredients_attributes)

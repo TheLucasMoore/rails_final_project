@@ -1,0 +1,12 @@
+<h4>Comments</h4>
+<% @recipe.comments.each do |comment| %>
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+    <%= comment.user %> says:
+    </h4></div>
+  <%= comment.content %>
+  <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), method: :delete %>
+  </div>
+
+<% end %>

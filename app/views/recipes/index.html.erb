@@ -1,5 +1,7 @@
 <h1>All Recipes</h1>
 
+<h4><%= link_to "Add a recipe", new_recipe_path %></h4>
+
 <ul class="list-group">
   <% @recipes.each do |recipe| %>
   <li class="list-group-item">
