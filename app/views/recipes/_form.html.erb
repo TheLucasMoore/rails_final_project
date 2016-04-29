@@ -10,7 +10,7 @@
   <%= f.number_field :rating, min: 1, max: 5 %><br><br>
 
   <%= f.label "Select Existing Ingredients" %>
-  <%= f.collection_check_boxes :ingredients, Ingredient.all, :id, :name %><br>
+  <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name, checked: @recipe.try(:ingredient_ids) %><br>
 
   <%= f.label "Or add a new ingredient" %><br>
   <%= f.fields_for(:ingredients, Ingredient.new) do |ing_form| %>
@@ -19,7 +19,7 @@
   <%= ing_form.text_field :name %>
   <% end %> 
 
-   <%= f.hidden_field :user_id, :value => current_user.id %>
+   <%= f.hidden_field :user_id, :value => current_user.id %><br><br>
 
   <%= f.submit %>
   

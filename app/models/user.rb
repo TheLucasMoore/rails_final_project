@@ -8,4 +8,11 @@ class User < ActiveRecord::Base
   has_many :recipes
 
   enum role: [:user, :moderator, :admin]
+
+  after_initialize :set_default_user_role
+
+  def set_default_user_role
+    self.role = :user unless self.role
+  end
+
 end

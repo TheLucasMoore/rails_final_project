@@ -4,6 +4,10 @@
 
 <p><%= @recipe.description %></p>
 
+<% if current_user.admin? || current_user.moderator? || @recipe.user_id == current_user.id %>
+<p><%= link_to "Edit this Recipe", edit_recipe_path(@recipe) %></p>
+<% end %>
+
 <h4>Recipe Ingredients</h4>
 <ul>
 <% @recipe.ingredients.each do |ingredient| %>

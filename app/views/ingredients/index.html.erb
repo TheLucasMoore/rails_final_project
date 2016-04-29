@@ -5,8 +5,12 @@
 <ul class="list-group">
 <% @ingredients.each do |ingredient| %>
   <li class="list-group-item">
-  <%= link_to ingredient.name, ingredient_path(ingredient) %> 
+  <%= link_to ingredient.name, ingredient_path(ingredient) %>
+
+  <% if current_user.admin? || current_user.moderator? %>
   - <%= link_to "edit", edit_ingredient_path(ingredient), class:"glyphicon glyphicon-pencil" %>
+  <%= link_to "delete", ingredient_path(ingredient), method: :delete %>
+  <% end %>
   </li>
 <% end %>
 </ul>

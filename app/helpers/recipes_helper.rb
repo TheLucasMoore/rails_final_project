@@ -9,7 +9,7 @@ module RecipesHelper
     pluralize(count, 'comment')
   end
 
-  def average_rating
-    @recipe.ratings.count
+  def rating
+    @recipe.rating
   end
 end

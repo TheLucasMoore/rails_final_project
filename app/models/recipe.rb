@@ -12,18 +12,23 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :ingredients
 
   def ingredients_attributes=(ingredients_attributes)
+    if ingredients_attributes.values[0]["name"] != ""
+      #What a hack... this makes sure that the new ingredient form wasn't blank
+      #before building the ingredients. 
     ingredients_attributes.each do |i, ingredient_attributes|
-      #raise ingredient_attributes.inspect
-      self.ingredients.build(ingredient_attributes)
+        self.ingredients.build(ingredient_attributes)
+      end
     end
   end
 
-  def ingredients=(ingredients_array)
-    ingredients_array.each do |ing|
-     if ing != "" 
-      new_ingredient = Ingredient.find_by_id(ing)
-      self.ingredients << new_ingredient
-    end
-    end
-  end
+  # def ingredients=(ingredients_array)
+  #   ingredients_array.each do |ing|
+  #   if ing != ""
+  #     new_ingredient = Ingredient.find_by_id(ing)
+  #       unless self.ingredients.include?(ing)
+  #         self.ingredients << new_ingredient
+  #         end
+  #       end
+  #     end
+  #   end
 end

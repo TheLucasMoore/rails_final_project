@@ -11,15 +11,17 @@
 
 ## Authentication with Pundit
   -record sceen cast of this
-
-## Devise with Facebook, Twitter
-
-- Recipe/Ingredients Quantity Relationship? In forms.
-
-  Roles? 
+  =Roles? 
   Admin, Moderator, User
   Admin can do everything
   Moderator can edit comments, ingredients
   User can CRUD own recpies, ratings and comments
 
+## Devise with Facebook, Twitter
+
+- Recipe/Ingredients Quantity Relationship? In forms.
+
 - One ActiveRecord Scoped Method
+
+- FIX NESTED FORM WITH IDs being passed as strings in an array
+- COMMENT EDITING - is nested and causing issues.

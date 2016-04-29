@@ -22,11 +22,20 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = Comment.find(params[:id])
+    @comment = Comment.update(comment_params)
+    authorize @recipe
   end
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
+    authorize @comment
     @comment.destroy
 
     redirect_to recipe_comments_path

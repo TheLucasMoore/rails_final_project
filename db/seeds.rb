@@ -10,7 +10,8 @@
   User.create(
       name: Faker::Name.name,
       email: "lucas@email.net",
-      password: "testtest"
+      password: "testtest",
+      role: 2,
       )
 
   10.times do 

@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'static/index'
+  devise_for :users, controllers: { registrations: 'users/registrations'  }
   get '/about' => 'static#about'
 
   resources :ingredients
   resources :recipes do
-    resources :comments, only: [:new, :create, :index, :destroy]
+    resources :comments
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

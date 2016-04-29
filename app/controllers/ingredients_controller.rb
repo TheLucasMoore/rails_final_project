@@ -19,6 +19,7 @@ class IngredientsController < ApplicationController
 
   def edit
     @ingredient = Ingredient.find(params[:id])
+    authorize @ingredient
   end
 
   def update
@@ -29,6 +30,14 @@ class IngredientsController < ApplicationController
     else 
       render 'edit'
     end
+  end
+
+  def destroy
+    @ingredient = Ingredient.find(params[:id])
+    authorize @ingredient
+    @ingredient.destroy
+
+    redirect_to ingredients_path
   end
 
   private
