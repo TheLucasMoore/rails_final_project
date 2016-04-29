@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :comments
   has_many :recipes
-  has_many :ratings
+
+  enum role: [:user, :moderator, :admin]
 end

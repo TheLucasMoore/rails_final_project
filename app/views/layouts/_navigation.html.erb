@@ -3,6 +3,9 @@
     <%= link_to "Fridge Saver!", root_path, class: "navbar-brand" %>
     <ul class="nav navbar-nav">
     <% if user_signed_in? %>
+      <li class="nav navbar-text">
+      Hey <%= current_user.name %>!
+      </li>
       <li>
       <%= link_to "Ingredients", ingredients_path %>
       </li>

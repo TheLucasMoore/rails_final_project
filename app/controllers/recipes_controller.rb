@@ -35,13 +35,14 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "There were issues saving your recipe."
+      flash[:alert] = @recipe.errors.message
       render 'edit'
     end
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
+    authorize @recipe
     @recipe.destroy
     redirect_to recipes_path
   end
