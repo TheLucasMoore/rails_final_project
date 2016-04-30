@@ -3,13 +3,13 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-    <%= comment.user.name %> says:
+    <%= comment.user %> says:
     </h4></div>
   <%= comment.content %>
-  <% if current_user.admin? || comment.user.id == current_user.id %>
+  <% if current_user.admin? || comment.user_id == current_user.id %>
   <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), method: :delete %>
   <% end %>
-  <% if current_user.admin? || current_user.moderator? || comment.user.id == current_user.id %>
+  <% if current_user.admin? || current_user.moderator? || comment.user_id == current_user.id %>
   <%= link_to "Edit Comment", edit_recipe_comment_path(@recipe, comment) %>
   <% end %>
   </div>

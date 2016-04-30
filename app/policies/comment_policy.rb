@@ -15,6 +15,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user.moderator?
+    record = user || user.admin? || user.moderator?
   end
 end

@@ -1,7 +1,7 @@
-<%= form_tag(recipe_comments_path) %>
+<%= form_tag(recipe_comment_path, method: :put) %>
 
   <%= label_tag "Add Your Comment" %><br>
-  <%= text_area_tag :content %><br>
+  <%= text_area_tag :content, @comment.content %><br>
 
   <%= hidden_field_tag :user_id, current_user.id %>
   <%= hidden_field_tag :recipe_id %>

@@ -25,11 +25,21 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+  end
+
   def update
     @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
-    @comment = Comment.update(comment_params)
-    authorize @recipe
+    authorize @comment
+
+    @comment.update(comment_params)
+    if @comment.save
+      redirect_to recipe_comments_path
+    else
+      render :edit
+    end
   end
 
   def destroy
