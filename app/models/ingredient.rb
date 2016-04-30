@@ -9,9 +9,4 @@ class Ingredient < ActiveRecord::Base
     return q.quantity
   end
 
-  def recipe_amount=(amount)
-    q = RecipeIngredient.find_by(:recipe_id => recipe, :ingredient_id => self.id)
-    q.quantity = amount
-    q.save
-  end
 end

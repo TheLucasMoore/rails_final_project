@@ -3,7 +3,7 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-    <%= comment.user %> says:
+    <%= comment.user.name %> says:
     </h4></div>
   <%= comment.content %>
   <% if current_user.admin? || comment.user_id == current_user.id %>
