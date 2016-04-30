@@ -9,8 +9,22 @@
 <% end %>
 
 <h4>Recipe Ingredients</h4>
-<ul>
-<% @recipe.ingredients.each do |ingredient| %>
-  <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
-<% end %>
-</ul>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <tr>
+        <td><%= link_to ingredient.name, ingredient_path(ingredient) %></td>
+        <td><%= ingredient.recipe_amount(@recipe) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

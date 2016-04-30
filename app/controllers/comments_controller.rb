@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to recipe_comments_path
     else
-      flash[:notice] = "Try that again! Comments cannot be blank."
+      flash[:alert] = @comment.errors.full_messages
       render :new
     end
   end
@@ -38,6 +38,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to recipe_comments_path
     else
+      flash[:alert] = @comment.errors.full_messages
       render :edit
     end
   end

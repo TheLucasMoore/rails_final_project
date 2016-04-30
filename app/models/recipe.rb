@@ -22,6 +22,8 @@ class Recipe < ActiveRecord::Base
   end
 
   def ingredients=(ingredients_array)
+    #Did I need to build this custom writer? 
+    #It writes to recipe.ingredients from the recipes controller
     ingredients_array.each do |ing|
     if ing != ""
       new_ingredient = Ingredient.find_by_id(ing)
