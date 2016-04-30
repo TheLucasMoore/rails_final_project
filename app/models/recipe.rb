@@ -14,21 +14,21 @@ class Recipe < ActiveRecord::Base
   def ingredients_attributes=(ingredients_attributes)
     if ingredients_attributes.values[0]["name"] != ""
       #What a hack... this makes sure that the new ingredient form wasn't blank
-      #before building the ingredients. 
+      #before building the ingredients. It works around ingredient validation issues.
     ingredients_attributes.each do |i, ingredient_attributes|
         self.ingredients.build(ingredient_attributes)
       end
     end
   end
 
-  # def ingredients=(ingredients_array)
-  #   ingredients_array.each do |ing|
-  #   if ing != ""
-  #     new_ingredient = Ingredient.find_by_id(ing)
-  #       unless self.ingredients.include?(ing)
-  #         self.ingredients << new_ingredient
-  #         end
-  #       end
-  #     end
-  #   end
+  def ingredients=(ingredients_array)
+    ingredients_array.each do |ing|
+    if ing != ""
+      new_ingredient = Ingredient.find_by_id(ing)
+        unless self.ingredients.include?(ing)
+          self.ingredients << new_ingredient
+          end
+        end
+      end
+    end
 end

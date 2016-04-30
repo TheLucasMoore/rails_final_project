@@ -14,14 +14,14 @@ class RecipesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
     @recipe = Recipe.create(recipe_params)
-    @recipe.ingredients = params[:recipe][:ingredients]
+    @recipe.ingredients = params[:recipe][:ingredient_ids]
     
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "There were issues saving your recipe."
+      message = @recipe.errors.full_messages
+      flash[:alert] = message
       render :new
     end
   end
@@ -34,14 +34,14 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     authorize @recipe
-    raise recipe_params.inspect
     @recipe.update(recipe_params)
 
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      raise "OH NO!"
-      render 'edit'
+      message = @recipe.errors.full_messages
+      flash[:alert] = message
+      render :edit
     end
   end
 
