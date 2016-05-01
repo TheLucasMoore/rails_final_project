@@ -10,6 +10,6 @@ class RecipeIngredient < ActiveRecord::Base
 
   def self.print_amount(recipe, ingredient)
     r = RecipeIngredient.find_by(:recipe_id => recipe, :ingredient_id => ingredient)
-    r.quantity if !r.nil?
+    return r.quantity
   end
 end

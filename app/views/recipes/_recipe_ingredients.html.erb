@@ -1,9 +1,0 @@
-<% @recipe_ingredients.each do |ingredient| %>
-
-
-<%= form_for(ingredient) do |f| %>
-<%= f.label "#{ingredient}" %><br>
-<%= f.number_field :quantity, value: RecipeIngredient.print_amount(@recipe, ingredient) %><br>
-
-<% end %>
-<% end %>
