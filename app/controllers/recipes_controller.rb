@@ -28,10 +28,12 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @recipe_ingredients = RecipeIngredient.where(:recipe_id => params[:id])
     authorize @recipe
   end
 
   def update
+    raise params.inspect
     @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.update(recipe_params)
