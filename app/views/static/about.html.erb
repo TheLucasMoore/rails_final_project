@@ -2,4 +2,5 @@
 
 <p>The purpose of this website is to find recipes to cook with the food you already have in your fridge. This cuts down on food waste.</p>
 
-<%= link_to "Sign in", new_user_session_path %> to get started!
+Name: <%= current_user.name %>
+Role: <%= current_user.role %>
