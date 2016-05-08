@@ -6,9 +6,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
-# gem "therubyracer"
-# gem "less-rails"
-# gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
