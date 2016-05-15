@@ -1,0 +1,11 @@
+<h2>Edit Ingredient Amounts!</h2>
+<% @recipe_ingredients.each do |recipe_ingredient| %>
+
+<%= form_for(recipe_ingredients_path) do |f| %>
+    <%= f.label recipe_ingredient.ingredient.name %>
+    <%= hidden_field_tag recipe_ingredient.ingredient.id, :value => recipe_ingredient.ingredient.id %>
+    <%= f.number_field recipe_ingredient.quantity, :value => recipe_ingredient.quantity %>
+    <%= f.submit "Submit", method: :post, action: :amount %><br>
+<% end %>
+<% end %>
+
