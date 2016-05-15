@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    #raise params.inspect
     @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.update(recipe_params)
