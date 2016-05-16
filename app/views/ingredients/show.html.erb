@@ -6,6 +6,41 @@
 
 <ul>
 <% @ingredient.recipes.each do |recipe| %>
-  <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+  <li><%= link_to recipe.name, recipe_path(recipe), id: :recipe %></li>
 <% end %>
 </ul>
+
+<% content_for :ingredient do %>
+  <script>
+  $(function() {
+    linkOverride();
+  });
+
+  var linkOverride = function() {
+    $("#recipe").click(function(event) {
+      event.preventDefault();
+      loadRecipes(event["target"]["href"]);
+    });
+  }
+
+  function loadRecipes(target_url) {
+    $.ajax ({
+      url: target_url + ".json",
+      type: 'GET',
+      data: {format: 'json'},
+      dataType: JSON,
+      success: function(data) {
+        console.log("Sucess", data);
+      },
+      error: function(error) {
+        console.log("error", error);
+      }
+    });
+  }
+
+  function handleResponse(data) {
+    console.log(data);
+  }
+
+  </script>
+<% end %>

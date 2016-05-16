@@ -16,7 +16,7 @@ class RecipeIngredientsController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    #raise params.inspect
     redirect_to recipe_path(@recipe)
   end
 
