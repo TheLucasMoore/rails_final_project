@@ -1,12 +1,15 @@
 <h1><%= @ingredient.name %> Ingredient Page</h1>
 
 <p>Ok, cool you have some <%= @ingredient.name %> in your fridge. Check out all the recipes we have and cook something with it!</p>
+<p>Click the link to see more about each recipe.</p>
 
 <h3>Recipes Using This Ingredient</h3>
 
 <ul>
 <% @ingredient.recipes.each do |recipe| %>
   <li><%= link_to recipe.name, recipe_path(recipe), id: :recipe %></li>
+  <h1 id="recipe-<%= recipe.id %>"></h1>
+  <p id="recipe-<%= recipe.id %>"></p>
 <% end %>
 </ul>
 
@@ -24,23 +27,18 @@
   }
 
   function loadRecipes(target_url) {
-    $.ajax ({
-      url: target_url + ".json",
-      type: 'GET',
-      data: {format: 'json'},
-      dataType: JSON,
-      success: function(data) {
-        console.log("Sucess", data);
-      },
-      error: function(error) {
-        console.log("error", error);
-      }
-    });
-  }
+    $.getJSON (target_url + ".json", function(result) {
+      handleResponse(result);
+      })
+    };
 
-  function handleResponse(data) {
-    console.log(data);
-  }
+  var handleResponse = function(result) {
+    var id = result['recipe']['id'];
+    var name = result['recipe']['name'];
+    var description = result['recipe']['description'];
+      $("h1#recipe-" + id).text(name);
+      $("p#recipe-" + id).text(description);
+  };
 
   </script>
 <% end %>
