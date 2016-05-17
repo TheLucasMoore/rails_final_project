@@ -54,6 +54,15 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def search
+  end
+
+  def results
+    term = params["search"]
+    recipe = Recipe.find_recipe(term)
+    redirect_to recipe_path(recipe)
+  end
+
   private
 
   def recipe_params

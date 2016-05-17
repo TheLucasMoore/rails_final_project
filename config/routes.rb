@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   post '/recipe_ingredients' => 'recipeingredients#amount'
 
+  get '/search' => 'recipes#search'
+  post '/search' => 'recipes#results'
+
   resources :ingredients
   resources :recipes do
     resources :comments

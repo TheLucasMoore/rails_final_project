@@ -11,6 +11,10 @@ class Recipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :ingredients
 
+  def self.find_recipe(term)
+    recipe = Recipe.find_by(name: term)
+  end
+
   def ingredients_attributes=(ingredients_attributes)
     if ingredients_attributes.values[0]["name"] != ""
       #What a hack... this makes sure that the new ingredient form wasn't blank
