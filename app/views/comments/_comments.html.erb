@@ -1,4 +1,3 @@
-<h4>Comments</h4>
 <% @recipe.comments.each do |comment| %>
 <div class="media">
   <div class="media-body">
@@ -7,10 +6,10 @@
     </h4></div>
   <%= comment.content %>
   <% if current_user.admin? || comment.user_id == current_user.id %>
-  <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), method: :delete %>
+  <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), id: :delete %>
   <% end %>
   <% if current_user.admin? || current_user.moderator? || comment.user_id == current_user.id %>
-  <%= link_to "Edit Comment", edit_recipe_comment_path(@recipe, comment) %>
+  <%= link_to "Edit Comment", edit_recipe_comment_path(@recipe, comment), id: :edit %>
   <% end %>
   </div>
 

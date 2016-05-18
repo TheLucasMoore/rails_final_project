@@ -1,5 +1,45 @@
 <%= render 'recipe' %>
 
-<br><br>
+<br>
+<h4>Comments</h4>
+<%= link_to "Want to add your own comment?", recipe_comments_path(@recipe.id, @comment), id: :comments %>
+<%= render '/comments/comments' %>
 
-<%= link_to "Want to see comments or add your own?", recipe_comments_path(@recipe.id, @comment) %>
+<% content_for :comments do %>
+<script>
+  $(function() {
+    initLinks();
+  })
+
+  var initLinks = function() {
+    $('#comments').click(function(event) {
+      event.preventDefault();
+      var formHTML = '<form method="post" action="/comments/new">' +
+      '<input name="content" type="text" autofocus="true"></input>' +
+      '<input name="submit" type="submit" value="Comment"></input>' +
+      '</form>';
+      $('#comments').html(formHTML);
+    });
+    $('#edit').click(function(event) {
+      event.preventDefault();
+      var formHTML = '<form method="post" action="/comments/new">' +
+      '<input name="content" type="text" autofocus="true" value="comment content"></input>' +
+      '<input name="submit" type="submit" value="Edit"></input>' +
+      '</form>';
+      $('#edit').html(formHTML);
+    });
+    $('#delete').click(function(event) {
+      event.preventDefault();
+      var result = confirm("Are you sure?");
+      if(result) {
+        // logic to delete the comment
+        alert("I want to delete")
+      } else {
+        // cancel it
+        alert("Nevermind!")
+      };
+    });
+  }
+</script>
+
+<% end %>

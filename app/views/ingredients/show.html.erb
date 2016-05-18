@@ -39,7 +39,8 @@
     var name = result['name'];
     var description = result['description'];
     var hide = ' <a href="#" id="hideMe">Hide this</a>'
-      $("h1#recipe-" + id).text(name);
+    var readMore = ' <a href="/recipes/' + id + '" id="readMore">Read More</a>'
+      $("h1#recipe-" + id).html(name + readMore);
       $("p#recipe-" + id).html(description + hide);
   };
 
