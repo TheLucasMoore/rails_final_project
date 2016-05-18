@@ -29,16 +29,27 @@
   function loadRecipes(target_url) {
     $.getJSON (target_url + ".json", function(result) {
       handleResponse(result);
+      hideContent(result['id'])
       })
     };
 
   var handleResponse = function(result) {
-    var id = result['recipe']['id'];
-    var name = result['recipe']['name'];
-    var description = result['recipe']['description'];
+    console.log(result);
+    var id = result['id'];
+    var name = result['name'];
+    var description = result['description'];
+    var hide = ' <a href="#" id="hideMe">Hide this</a>'
       $("h1#recipe-" + id).text(name);
-      $("p#recipe-" + id).text(description);
+      $("p#recipe-" + id).html(description + hide);
   };
+
+  var hideContent = function(id) {
+    $('#hideMe').on('click', function(event) {
+      event.preventDefault();
+      $("h1#recipe-" + id).text("");
+      $("p#recipe-" + id).text("");
+    });
+  }
 
   </script>
 <% end %>
