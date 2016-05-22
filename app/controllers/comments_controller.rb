@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     respond_to do |format|
-      format.html {render :index }
+      format.html {render :edit }
       format.json {render json:@comment }
     end
   end
@@ -63,6 +63,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:content, :user_id, :recipe_id)
+    params.permit(:content, :user_id, :recipe_id, :id)
   end
 end

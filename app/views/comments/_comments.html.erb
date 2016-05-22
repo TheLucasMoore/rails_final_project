@@ -4,12 +4,23 @@
     <h4 class="media-heading">
     <%= comment.user.name %> says:
     </h4></div>
-  <%= comment.content %>
-  <% if current_user.admin? || comment.user_id == current_user.id %>
-  <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), id: :delete %>
-  <% end %>
-  <% if current_user.admin? || current_user.moderator? || comment.user_id == current_user.id %>
-  <%= link_to "Edit Comment", edit_recipe_comment_path(@recipe, comment), id: :edit %>
+  <div id="comment_content">
+    <div class="commentos-<%= comment.id %>">
+    <%= comment.content %>
+    </div>
+    <% if current_user.admin? || comment.user_id == current_user.id %>
+    <%= link_to "Delete", recipe_comment_path(@recipe, comment.id), id: :delete %>
+    <% end %>
+    <% if current_user.admin? || current_user.moderator? || comment.user_id == current_user.id %>
+    <%= link_to "Edit Your Comments", edit_recipe_comment_path(@recipe, comment), id: :edit %>
+ </div>
+    <form id="edit_comment_form">
+    <%= text_field_tag :content, comment.content %><br>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :recipe_id, @recipe.id %>
+    <%= hidden_field_tag :id, comment.id %>
+    <%= submit_tag "Edit", id: :submit_edit %>
+    </form>
   <% end %>
   </div>
 
