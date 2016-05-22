@@ -4,6 +4,6 @@
   <%= text_area_tag :content %><br>
 
   <%= hidden_field_tag :user_id, current_user.id %>
-  <%= hidden_field_tag :recipe_id %>
+  <%= hidden_field_tag :recipe_id, @recipe.id %>
 
-<%= submit_tag %>
+<%= submit_tag "Add Comment" %>

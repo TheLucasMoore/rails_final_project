@@ -1,15 +1,27 @@
 <%= render '/recipes/recipe' %>
 <%= render 'comments' %>
 
+<div class="media">
+  <div class="media-body">
+    <h4 class="newUser"></h4>
+    </div>
+    <div id="newComment">
+      <p></p>
+    </div>
+    </div>
+
 <br><br>
+<div id="new_comment">
 <%= render 'form' %>
+</div>
 
 <% content_for :comments do %>
 <script>
   $(function() {
     editMethods();
+    doEdits();
     deleteMethods();
-    submitEdits();
+    createMethods();
   })
 
   var editMethods = function() {
@@ -21,7 +33,7 @@
     });
   }
 
-  function submitEdits() {
+  function doEdits() {
     $('#edit_comment_form').on("submit", function(event) {
       event.preventDefault();
       var values = $(this).serialize();
@@ -69,6 +81,29 @@
     $(comment).text("Comment Deleted");
     console.log(event);
   }
+
+  var createMethods = function() {
+    $('div#new_comment form').on("submit", function(event) {
+      event.preventDefault();
+      var comment = event['currentTarget']['2']['value'];
+      var user_id = event['currentTarget']['3']['value'];
+      var recipe_id = event['currentTarget']['4']['value'];
+
+      var values = $(this).serialize();
+
+      $.ajax({
+        url: "http://localhost:3000/recipes/" + recipe_id + "/comments/",
+        method: 'post',
+        data: values,
+        dataType: 'json'
+      }).done(function(data) {
+        $('div#new_comment form').hide();
+        $('.newUser').text("<%= current_user.name %>" + " says:");
+        $('#newComment').text(data['content']);
+      });
+    })
+  }
+
 
 </script>
 <% end %>

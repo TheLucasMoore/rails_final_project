@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to recipe_comments_path
+      # @user = User.find(@comment['user_id'])
+      render json: @comment, status: 201
     else
       flash[:alert] = @comment.errors.full_messages
       render :new
