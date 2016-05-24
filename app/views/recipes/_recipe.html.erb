@@ -23,9 +23,6 @@
       <tr>
         <td><%= link_to ingredient.name, ingredient_path(ingredient) %></td>
         <td id="ingredient_amount"><%= ingredient.recipe_amount(@recipe) %></td>
-        <td class="ingredient_form" id="<%= ingredient.id%>">
-        <%= form_tag(ingredient_path(ingredient)) %><%= number_field_tag :quantity, ingredient.recipe_amount(@recipe) %><%= submit_tag "Edit", id: :submit %>
-        </td>
         <% end %>
       </tr>
     </tbody>

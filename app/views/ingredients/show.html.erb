@@ -20,7 +20,7 @@
   });
 
   var linkOverride = function() {
-    $("#recipe").click(function(event) {
+    $("a#recipe").click(function(event) {
       event.preventDefault();
       loadRecipes(event["target"]["href"]);
     });
