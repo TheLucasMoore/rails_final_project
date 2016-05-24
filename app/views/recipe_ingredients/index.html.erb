@@ -1,1 +1,31 @@
 <%= render 'recipeingredients' %>
+
+<% content_for :ingredients %>
+<script type="text/javascript">
+$(function() {
+  ingredientMethods();
+})
+
+  var ingredientMethods = function() {
+    $('form').on("submit", function(event) {
+      event.preventDefault();
+
+      var recipe_id = event['currentTarget'][2]["value"];
+      var ri_id = event['currentTarget'][4]["defaultValue"];
+      var data = $(this).serialize();
+      updateAmounts(recipe_id, ri_id, data);
+    })
+  }
+
+  var updateAmounts = function(recipe_id, ri_id, data) {
+    var url = "/recipes/" + recipe_id + "/recipe_ingredients/" + ri_id
+    $.ajax({
+      url: url,
+      data: data, 
+      method: 'patch',
+      success: alert("Success!")
+    }).done(function(data) {
+      console.log(data);
+    })
+  }
+</script>
