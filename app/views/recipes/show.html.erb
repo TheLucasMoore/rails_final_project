@@ -1,5 +1,5 @@
 <%= render 'recipe' %>
 
-<br><br>
-
-<%= link_to "Want to see comments or add your own?", recipe_comments_path(@recipe.id, @comment) %>
+<br>
+<h4>Comments</h4>
+<%= link_to "Want to add your own comment?", recipe_comments_path(@recipe.id, @comment), id: :comments %>

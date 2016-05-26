@@ -15,16 +15,16 @@
     <thead>
       <tr>
         <th>Ingredient</th>
-        <th>Amount <%= link_to "Edit", recipe_recipe_ingredients_path(@recipe) %></th>
+        <th>Amount <%= link_to "Edit", recipe_recipe_ingredients_path(@recipe), :id => :edit_amount %></th>
       </tr>
     </thead>
     <tbody>
-    <% @recipe.ingredients.each do |ingredient| %>
+    <% @recipe.ingredients.each do |ingredient|%>
       <tr>
         <td><%= link_to ingredient.name, ingredient_path(ingredient) %></td>
         <td><%= ingredient.recipe_amount(@recipe) %></td>
       </tr>
-      <% end %>
+    <% end %>
     </tbody>
   </table>
 </div>

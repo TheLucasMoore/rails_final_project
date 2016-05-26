@@ -1,11 +1,56 @@
 <h1><%= @ingredient.name %> Ingredient Page</h1>
 
 <p>Ok, cool you have some <%= @ingredient.name %> in your fridge. Check out all the recipes we have and cook something with it!</p>
+<p>Click the link to see more about each recipe.</p>
 
 <h3>Recipes Using This Ingredient</h3>
 
 <ul>
 <% @ingredient.recipes.each do |recipe| %>
-  <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+  <li><%= link_to recipe.name, recipe_path(recipe), id: :recipe %></li>
+  <h1 id="recipe-<%= recipe.id %>"></h1>
+  <p id="recipe-<%= recipe.id %>"></p>
 <% end %>
 </ul>
+
+<% content_for :ingredient do %>
+  <script>
+  $(function() {
+    linkOverride();
+  });
+
+  var linkOverride = function() {
+    $("a#recipe").click(function(event) {
+      event.preventDefault();
+      loadRecipes(event["target"]["href"]);
+    });
+  }
+
+  function loadRecipes(target_url) {
+    $.getJSON (target_url + ".json", function(result) {
+      handleResponse(result);
+      hideContent(result['id'])
+      })
+    };
+
+  var handleResponse = function(result) {
+    console.log(result);
+    var id = result['id'];
+    var name = result['name'];
+    var description = result['description'];
+    var hide = ' <a href="#" id="hideMe">Hide this</a>'
+    var readMore = ' <a href="/recipes/' + id + '" id="readMore">Read More</a>'
+      $("h1#recipe-" + id).html(name + readMore);
+      $("p#recipe-" + id).html(description + hide);
+  };
+
+  var hideContent = function(id) {
+    $('#hideMe').on('click', function(event) {
+      event.preventDefault();
+      $("h1#recipe-" + id).text("");
+      $("p#recipe-" + id).text("");
+    });
+  }
+
+  </script>
+<% end %>

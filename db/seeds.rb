@@ -39,12 +39,6 @@
       content: Faker::Lorem.sentence
       )
 
-    RecipeIngredient.create(
-      recipe_id: Faker::Number.between(1, 5),
-      ingredient_id: Faker::Number.between(1, 5),
-      quantity: Faker::Number.between(1, 5)
-      )
-
   end
 
  

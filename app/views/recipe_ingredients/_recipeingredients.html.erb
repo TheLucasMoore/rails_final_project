@@ -1,11 +1,13 @@
 <h2>Edit Ingredient Amounts!</h2>
+<p>Edit any amounts as you see fit, then head on over to the <%= link_to "recipe page", recipe_path(@recipe) %> to see the updates!</p>
 <% @recipe_ingredients.each do |recipe_ingredient| %>
 
 <%= form_for(recipe_ingredients_path) do |f| %>
     <%= f.label recipe_ingredient.ingredient.name %>
-    <%= hidden_field_tag recipe_ingredient.ingredient.id, :value => recipe_ingredient.ingredient.id %>
-    <%= f.number_field recipe_ingredient.quantity, :value => recipe_ingredient.quantity %>
-    <%= f.submit "Submit", method: :post, action: :amount %><br>
+    <%= hidden_field_tag :recipe_id, recipe_ingredient.recipe.id.to_i %>
+    <%= hidden_field_tag :ingredient_id, recipe_ingredient.ingredient.id %>
+    <%= f.number_field :quantity, :value => recipe_ingredient.quantity %>
+    <%= f.submit "Submit", method: :post, action: :update %><br>
 <% end %>
 <% end %>
 

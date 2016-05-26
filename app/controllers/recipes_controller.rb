@@ -7,6 +7,13 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @comment = Comment.new
+    @recipe_comments = @recipe.comments
+    @recipe_ingredients = @recipe.recipe_ingredients
+
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json:@recipe}
+    end
   end
 
   def new
@@ -33,13 +40,12 @@ class RecipesController < ApplicationController
   end
 
   def update
-    #raise params.inspect
     @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.update(recipe_params)
 
     if @recipe.save
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_recipe_ingredients_path(@recipe)
     else
       message = @recipe.errors.full_messages
       flash[:alert] = message

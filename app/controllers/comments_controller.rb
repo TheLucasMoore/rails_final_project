@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to recipe_comments_path
+      # @user = User.find(@comment['user_id'])
+      render json: @comment, status: 201
     else
       flash[:alert] = @comment.errors.full_messages
       render :new
@@ -19,10 +20,18 @@ class CommentsController < ApplicationController
   def index
     @recipe = Recipe.find(params[:recipe_id])
     @comments = @recipe.comments
+    respond_to do |format|
+      format.html {render :index }
+      format.json {render json:@comments }
+    end
   end
 
   def edit
     @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.html {render :edit }
+      format.json {render json:@comment }
+    end
   end
 
   def show
@@ -55,6 +64,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:content, :user_id, :recipe_id)
+    params.permit(:content, :user_id, :recipe_id, :id)
   end
 end
