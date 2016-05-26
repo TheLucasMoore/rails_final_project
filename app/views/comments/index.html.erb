@@ -27,8 +27,10 @@
   var editMethods = function() {
     $('a#edit').on("click", function(event) {
       event.preventDefault();
-      $('#edit_comment_form').show();
-      $('#comment_content').hide();
+      var commentClass = "div." + event['target']['nextSibling']['parentNode']['children']['0']['className'] + " form";
+      console.log(commentClass);
+      $(commentClass).show();
+      // $('commentClass').hide();
     });
   }
 
