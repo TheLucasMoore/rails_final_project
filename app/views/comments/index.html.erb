@@ -93,7 +93,7 @@
       var values = $(this).serialize();
 
       $.ajax({
-        url: "http://localhost:3000/recipes/" + recipe_id + "/comments/",
+        url: "/recipes/" + recipe_id + "/comments/",
         method: 'post',
         data: values,
         dataType: 'json'

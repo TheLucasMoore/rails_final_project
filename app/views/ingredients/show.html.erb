@@ -38,10 +38,18 @@
     var id = result['id'];
     var name = result['name'];
     var description = result['description'];
+    var ingredients = result['ingredients'];
     var hide = ' <a href="#" id="hideMe">Hide this</a>'
     var readMore = ' <a href="/recipes/' + id + '" id="readMore">Read More</a>'
-      $("h1#recipe-" + id).html(name + readMore);
-      $("p#recipe-" + id).html(description + hide);
+
+    var ingredientList = '<h5>Other Ingredients in this Recipe</h5><ul>';
+    for(var i = 0; i < ingredients.length; i++) {
+      ingredientList += '<li>' + ingredients[i].name + '</li>';
+    };
+    ingredientList += '</ul>';
+
+    $("h1#recipe-" + id).html(name + readMore);
+    $("p#recipe-" + id).html(description + ingredientList + hide);
   };
 
   var hideContent = function(id) {
