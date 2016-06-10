@@ -11,19 +11,20 @@ $(function() {
       event.preventDefault();
 
       var recipe_id = event['currentTarget'][2]["value"];
-      var ri_id = event['currentTarget'][4]["defaultValue"];
+      var ingredient_id = event['currentTarget'][3]["value"];
+      var quantity = event['currentTarget'][5]["valueAsNumber"];
       var data = $(this).serialize();
-      updateAmounts(recipe_id, ri_id, data);
+      updateAmounts(recipe_id, ingredient_id, data);
     })
   }
 
-  var updateAmounts = function(recipe_id, ri_id, data) {
-    var url = "/recipes/" + recipe_id + "/recipe_ingredients/" + ri_id
+  var updateAmounts = function(recipe_id, ingredient_id, data) {
+    var url = "/recipes/" + recipe_id + "/recipe_ingredients/"
     $.ajax({
       url: url,
-      data: data, 
-      method: 'patch',
-      success: alert("Success!")
+      method: 'post',
+      data: data,
+      success: alert("Success!"),
     }).done(function(data) {
       console.log(data);
     })

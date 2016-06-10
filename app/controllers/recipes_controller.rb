@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     @recipe.ingredients = params[:recipe][:ingredient_ids]
     
     if @recipe.save
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_recipe_ingredients_path(@recipe)
     else
       message = @recipe.errors.full_messages
       flash[:alert] = message
