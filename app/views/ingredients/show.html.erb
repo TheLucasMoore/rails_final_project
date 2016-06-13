@@ -17,6 +17,7 @@
   <script>
   $(function() {
     linkOverride();
+    Recipe();
   });
 
   var linkOverride = function() {
@@ -34,22 +35,28 @@
     };
 
   var handleResponse = function(result) {
-    console.log(result);
-    var id = result['id'];
-    var name = result['name'];
-    var description = result['description'];
-    var ingredients = result['ingredients'];
+    var recipe = new Recipe(result);
     var hide = ' <a href="#" id="hideMe">Hide this</a>'
-    var readMore = ' <a href="/recipes/' + id + '" id="readMore">Read More</a>'
 
+    $("h1#recipe-" + recipe.id).html(recipe.name + recipe.readMore);
+    $("p#recipe-" + recipe.id).html(recipe.description + recipe.listItems() + hide);
+  };
+
+  function Recipe(resultsHash) {
+    this.id = resultsHash['id'];
+    this.name = resultsHash['name'];
+    this.description = resultsHash['description'];
+    this.readMore = ' <a href="/recipes/' + recipe.id + '" id="readMore">Read More</a>'
+    this.ingredients = resultsHash['ingredients'];
+  };
+
+  Recipe.prototype.listItems = function() {
     var ingredientList = '<h5>Other Ingredients in this Recipe</h5><ul>';
-    for(var i = 0; i < ingredients.length; i++) {
-      ingredientList += '<li>' + ingredients[i].name + '</li>';
-    };
+    for(var i = 0; i < this.ingredients.length; i++) {
+      ingredientList += '<li>' + this.ingredients[i].name + '</li>';
+    }
     ingredientList += '</ul>';
-
-    $("h1#recipe-" + id).html(name + readMore);
-    $("p#recipe-" + id).html(description + ingredientList + hide);
+    return ingredientList;
   };
 
   var hideContent = function(id) {

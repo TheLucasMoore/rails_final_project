@@ -31,9 +31,7 @@ class Recipe < ActiveRecord::Base
     ingredients_array.each do |ing|
     if ing != ""
       new_ingredient = Ingredient.find_by_id(ing)
-        unless self.ingredients.include?(ing)
-          self.ingredients << new_ingredient
-          end
+          self.ingredients << new_ingredient unless self.ingredients.include?(ing)
         end
       end
     end
