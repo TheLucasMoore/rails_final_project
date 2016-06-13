@@ -51,11 +51,11 @@
   };
 
   Recipe.prototype.listItems = function() {
-    var ingredientList = '<h5>Other Ingredients in this Recipe</h5><ul>';
+    var ingredientList = '<h5>Other Ingredients in this Recipe</h5><ol>';
     for(var i = 0; i < this.ingredients.length; i++) {
       ingredientList += '<li>' + this.ingredients[i].name + '</li>';
     }
-    ingredientList += '</ul>';
+    ingredientList += '</ol>';
     return ingredientList;
   };
 
